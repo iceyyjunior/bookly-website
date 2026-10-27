@@ -9,20 +9,20 @@ export default function Home() {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
     setFormSubmitted(true)
-    setTimeout(() => setFormSubmitted(false), 5000)
+    setTimeout(() => setFormSubmitted(false), 6000)
   }
 
   return (
     <main className="min-h-screen bg-white text-soft-900">
       {/* Navigation */}
-      <nav className="fixed top-0 w-full z-50 bg-white/90 backdrop-blur-md border-b border-gray-100">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 py-4 flex items-center justify-between">
-          <div className="flex items-center gap-2">
-            <div className="w-9 h-9 bg-primary-600 rounded-lg flex items-center justify-center">
-              <span className="text-white font-bold text-lg">B</span>
+      <nav className="fixed top-0 w-full z-50 bg-white/95 backdrop-blur-md border-b border-gray-100">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 py-3.5 flex items-center justify-between">
+          <a href="#" className="flex items-center gap-2.5">
+            <div className="w-10 h-10 bg-primary-600 rounded-xl flex items-center justify-center shadow-sm">
+              <span className="text-white font-bold text-xl">B</span>
             </div>
-            <span className="text-xl font-bold text-soft-900 tracking-tight">Bookly</span>
-          </div>
+            <span className="text-xl font-bold tracking-tight text-soft-900">Bookly</span>
+          </a>
 
           <div className="hidden md:flex items-center gap-8 text-sm font-medium text-gray-600">
             <a href="#" className="hover:text-primary-600 transition">Home</a>
@@ -34,7 +34,7 @@ export default function Home() {
 
           <a 
             href="#booking" 
-            className="hidden sm:inline-flex bg-primary-600 text-white px-5 py-2.5 rounded-full text-sm font-semibold hover:bg-primary-700 transition"
+            className="hidden sm:inline-flex bg-primary-600 text-white px-5 py-2.5 rounded-full text-sm font-semibold hover:bg-primary-700 transition shadow-sm"
           >
             Book Appointment
           </a>
@@ -42,6 +42,7 @@ export default function Home() {
           <button 
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)} 
             className="md:hidden p-2 text-gray-700"
+            aria-label="Toggle menu"
           >
             <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               {mobileMenuOpen ? (
@@ -54,14 +55,14 @@ export default function Home() {
         </div>
 
         {/* Mobile Menu */}
-        {mobileMenuOpen && (
-          <div className="md:hidden bg-white border-t border-gray-100">
-            <div className="px-4 py-4 space-y-3 text-sm font-medium">
-              <a href="#" className="block py-2 hover:text-primary-600" onClick={() => setMobileMenuOpen(false)}>Home</a>
-              <a href="#services" className="block py-2 hover:text-primary-600" onClick={() => setMobileMenuOpen(false)}>Services</a>
-              <a href="#about" className="block py-2 hover:text-primary-600" onClick={() => setMobileMenuOpen(false)}>About</a>
-              <a href="#booking" className="block py-2 hover:text-primary-600" onClick={() => setMobileMenuOpen(false)}>Book Now</a>
-              <a href="#contact" className="block py-2 hover:text-primary-600" onClick={() => setMobileMenuOpen(false)}>Contact</a>
+        <div className={`md:hidden overflow-hidden transition-all duration-300 ease-in-out ${mobileMenuOpen ? 'max-h-80 opacity-100' : 'max-h-0 opacity-0'}`}>
+          <div className="bg-white border-t border-gray-100">
+            <div className="px-4 py-4 space-y-1 text-sm font-medium">
+              <a href="#" className="block py-2.5 hover:text-primary-600" onClick={() => setMobileMenuOpen(false)}>Home</a>
+              <a href="#services" className="block py-2.5 hover:text-primary-600" onClick={() => setMobileMenuOpen(false)}>Services</a>
+              <a href="#about" className="block py-2.5 hover:text-primary-600" onClick={() => setMobileMenuOpen(false)}>About</a>
+              <a href="#booking" className="block py-2.5 hover:text-primary-600" onClick={() => setMobileMenuOpen(false)}>Book Now</a>
+              <a href="#contact" className="block py-2.5 hover:text-primary-600" onClick={() => setMobileMenuOpen(false)}>Contact</a>
               <a 
                 href="#booking" 
                 className="block mt-3 bg-primary-600 text-white text-center py-3 rounded-full font-semibold"
@@ -71,12 +72,12 @@ export default function Home() {
               </a>
             </div>
           </div>
-        )}
+        </div>
       </nav>
 
       {/* Hero */}
       <section className="pt-28 sm:pt-36 pb-16 sm:pb-24 px-4 sm:px-6 bg-gradient-to-b from-primary-50 to-white">
-        <div className="max-w-6xl mx-auto grid lg:grid-cols-2 gap-12 items-center">
+        <div className="max-w-6xl mx-auto grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
           <div>
             <p className="text-primary-600 font-medium mb-3 tracking-wide uppercase text-sm">Modern Dental Care</p>
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight mb-6 text-soft-900">
@@ -88,7 +89,7 @@ export default function Home() {
             <div className="flex flex-col sm:flex-row gap-4">
               <a 
                 href="#booking" 
-                className="bg-primary-600 text-white px-8 py-4 rounded-full font-semibold text-lg hover:bg-primary-700 transition text-center"
+                className="bg-primary-600 text-white px-8 py-4 rounded-full font-semibold text-lg hover:bg-primary-700 transition text-center shadow-md shadow-primary-200"
               >
                 Book Appointment
               </a>
@@ -100,18 +101,18 @@ export default function Home() {
               </a>
             </div>
 
-            <div className="mt-10 flex items-center gap-6 text-sm text-gray-600">
+            <div className="mt-10 flex flex-wrap items-center gap-5 text-sm text-gray-600">
               <div className="flex items-center gap-2">
                 <span className="text-primary-600 font-bold text-xl">4.9</span>
-                <span>★★★★★</span>
+                <span className="text-primary-500">★★★★★</span>
               </div>
-              <div className="h-4 w-px bg-gray-300"></div>
+              <div className="h-4 w-px bg-gray-300 hidden sm:block"></div>
               <span>Trusted by 2,000+ patients</span>
             </div>
           </div>
 
           <div className="relative">
-            <div className="aspect-[4/5] rounded-3xl overflow-hidden shadow-2xl bg-primary-100">
+            <div className="aspect-[4/5] rounded-3xl overflow-hidden shadow-2xl">
               <img 
                 src="https://images.unsplash.com/photo-1629909615184-74f495363b67?q=80&w=1000&auto=format&fit=crop" 
                 alt="Modern dental clinic"
@@ -140,7 +141,10 @@ export default function Home() {
               { title: 'Root Canal', desc: 'Gentle and effective treatment to save infected teeth.', icon: '🩺' },
               { title: 'Emergency Care', desc: 'Same-day appointments available for dental emergencies.', icon: '⚡' },
             ].map((service) => (
-              <div key={service.title} className="bg-soft-50 border border-gray-100 rounded-2xl p-7 hover:shadow-md transition">
+              <div 
+                key={service.title} 
+                className="bg-soft-50 border border-gray-100 rounded-2xl p-7 hover:shadow-lg hover:border-primary-100 transition-all duration-300"
+              >
                 <div className="text-3xl mb-4">{service.icon}</div>
                 <h3 className="text-xl font-bold mb-2">{service.title}</h3>
                 <p className="text-gray-600 text-sm leading-relaxed">{service.desc}</p>
@@ -182,22 +186,17 @@ export default function Home() {
           </div>
 
           <div className="grid grid-cols-2 gap-4">
-            <div className="bg-white rounded-2xl p-6 shadow-sm border border-gray-100 text-center">
-              <p className="text-3xl font-bold text-primary-600">15+</p>
-              <p className="text-sm text-gray-600 mt-1">Years Experience</p>
-            </div>
-            <div className="bg-white rounded-2xl p-6 shadow-sm border border-gray-100 text-center">
-              <p className="text-3xl font-bold text-primary-600">2k+</p>
-              <p className="text-sm text-gray-600 mt-1">Happy Patients</p>
-            </div>
-            <div className="bg-white rounded-2xl p-6 shadow-sm border border-gray-100 text-center">
-              <p className="text-3xl font-bold text-primary-600">4.9</p>
-              <p className="text-sm text-gray-600 mt-1">Average Rating</p>
-            </div>
-            <div className="bg-white rounded-2xl p-6 shadow-sm border border-gray-100 text-center">
-              <p className="text-3xl font-bold text-primary-600">98%</p>
-              <p className="text-sm text-gray-600 mt-1">Satisfaction Rate</p>
-            </div>
+            {[
+              { value: '15+', label: 'Years Experience' },
+              { value: '2k+', label: 'Happy Patients' },
+              { value: '4.9', label: 'Average Rating' },
+              { value: '98%', label: 'Satisfaction Rate' },
+            ].map((stat) => (
+              <div key={stat.label} className="bg-white rounded-2xl p-6 shadow-sm border border-gray-100 text-center hover:shadow-md transition">
+                <p className="text-3xl font-bold text-primary-600">{stat.value}</p>
+                <p className="text-sm text-gray-600 mt-1">{stat.label}</p>
+              </div>
+            ))}
           </div>
         </div>
       </section>
@@ -213,7 +212,7 @@ export default function Home() {
 
           {formSubmitted ? (
             <div className="bg-primary-50 border border-primary-200 rounded-2xl p-10 text-center">
-              <div className="text-4xl mb-4">✓</div>
+              <div className="w-16 h-16 bg-primary-100 text-primary-600 rounded-full flex items-center justify-center text-3xl mx-auto mb-5">✓</div>
               <h3 className="text-2xl font-bold text-primary-700 mb-2">Appointment Request Sent!</h3>
               <p className="text-gray-600">We’ll contact you shortly to confirm your preferred time.</p>
             </div>
@@ -305,7 +304,7 @@ export default function Home() {
 
               <button 
                 type="submit"
-                className="w-full bg-primary-600 text-white font-bold py-4 rounded-xl hover:bg-primary-700 transition text-lg"
+                className="w-full bg-primary-600 text-white font-bold py-4 rounded-xl hover:bg-primary-700 transition text-lg shadow-md shadow-primary-200"
               >
                 Confirm Booking Request
               </button>
@@ -330,7 +329,7 @@ export default function Home() {
               { name: 'David K.', text: 'Booked online in less than a minute and got a same-day appointment. Highly recommend Bookly!', rating: '★★★★★' },
               { name: 'Fatima S.', text: 'Clean clinic, modern equipment, and friendly staff. My teeth have never looked better.', rating: '★★★★★' },
             ].map((t) => (
-              <div key={t.name} className="bg-white border border-gray-100 rounded-2xl p-7">
+              <div key={t.name} className="bg-white border border-gray-100 rounded-2xl p-7 hover:shadow-md transition">
                 <div className="text-primary-500 mb-4">{t.rating}</div>
                 <p className="text-gray-600 mb-6 leading-relaxed">"{t.text}"</p>
                 <p className="font-semibold">{t.name}</p>
@@ -342,7 +341,7 @@ export default function Home() {
 
       {/* CTA */}
       <section className="py-20 px-4 sm:px-6">
-        <div className="max-w-4xl mx-auto text-center bg-primary-600 rounded-3xl p-10 sm:p-16 text-white">
+        <div className="max-w-4xl mx-auto text-center bg-primary-600 rounded-3xl p-10 sm:p-16 text-white shadow-xl shadow-primary-200">
           <h2 className="text-3xl sm:text-4xl font-bold mb-4">Ready for a Healthier Smile?</h2>
           <p className="text-primary-100 text-lg mb-8 max-w-xl mx-auto">Book your appointment today and take the first step toward better oral health.</p>
           <a 
@@ -359,9 +358,9 @@ export default function Home() {
         <div className="max-w-6xl mx-auto">
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-10 mb-10">
             <div>
-              <div className="flex items-center gap-2 mb-4">
-                <div className="w-8 h-8 bg-primary-600 rounded-lg flex items-center justify-center">
-                  <span className="text-white font-bold">B</span>
+              <div className="flex items-center gap-2.5 mb-4">
+                <div className="w-9 h-9 bg-primary-600 rounded-xl flex items-center justify-center">
+                  <span className="text-white font-bold text-lg">B</span>
                 </div>
                 <span className="text-lg font-bold">Bookly</span>
               </div>
