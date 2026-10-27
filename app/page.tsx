@@ -9,7 +9,7 @@ export default function Home() {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
     setFormSubmitted(true)
-    setTimeout(() => setFormSubmitted(false), 6000)
+    setTimeout(() => setFormSubmitted(false), 7000)
   }
 
   return (
@@ -211,10 +211,30 @@ export default function Home() {
           </div>
 
           {formSubmitted ? (
-            <div className="bg-primary-50 border border-primary-200 rounded-2xl p-10 text-center">
-              <div className="w-16 h-16 bg-primary-100 text-primary-600 rounded-full flex items-center justify-center text-3xl mx-auto mb-5">✓</div>
-              <h3 className="text-2xl font-bold text-primary-700 mb-2">Appointment Request Sent!</h3>
-              <p className="text-gray-600">We’ll contact you shortly to confirm your preferred time.</p>
+            <div className="bg-white border border-primary-200 rounded-2xl p-10 sm:p-12 text-center shadow-lg animate-[fadeIn_0.4s_ease-out]">
+              {/* Animated Check Circle */}
+              <div className="relative w-24 h-24 mx-auto mb-6">
+                <div className="absolute inset-0 bg-primary-100 rounded-full animate-ping opacity-40"></div>
+                <div className="relative w-24 h-24 bg-primary-600 rounded-full flex items-center justify-center shadow-lg shadow-primary-200">
+                  <svg className="w-12 h-12 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
+                  </svg>
+                </div>
+              </div>
+
+              <h3 className="text-2xl sm:text-3xl font-bold text-soft-900 mb-3">
+                Appointment Request Sent!
+              </h3>
+              <p className="text-gray-600 text-lg mb-6 max-w-md mx-auto">
+                Thank you! We’ve received your booking request and will contact you shortly to confirm your preferred time.
+              </p>
+
+              <div className="inline-flex items-center gap-2 text-sm text-primary-700 bg-primary-50 px-4 py-2 rounded-full">
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                Usually confirmed within a few hours
+              </div>
             </div>
           ) : (
             <form onSubmit={handleSubmit} className="bg-white border border-gray-200 rounded-2xl p-6 sm:p-10 shadow-sm space-y-6">
@@ -401,6 +421,13 @@ export default function Home() {
           </div>
         </div>
       </footer>
+
+      <style jsx>{`
+        @keyframes fadeIn {
+          from { opacity: 0; transform: translateY(10px); }
+          to { opacity: 1; transform: translateY(0); }
+        }
+      `}</style>
     </main>
   )
 }
