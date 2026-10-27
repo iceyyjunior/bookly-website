@@ -9,7 +9,7 @@ export default function Home() {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
     setFormSubmitted(true)
-    setTimeout(() => setFormSubmitted(false), 7000)
+    setTimeout(() => setFormSubmitted(false), 8000)
   }
 
   return (
@@ -54,7 +54,6 @@ export default function Home() {
           </button>
         </div>
 
-        {/* Mobile Menu */}
         <div className={`md:hidden overflow-hidden transition-all duration-300 ease-in-out ${mobileMenuOpen ? 'max-h-80 opacity-100' : 'max-h-0 opacity-0'}`}>
           <div className="bg-white border-t border-gray-100">
             <div className="px-4 py-4 space-y-1 text-sm font-medium">
@@ -154,7 +153,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* About / Why Us */}
+      {/* About */}
       <section id="about" className="py-20 sm:py-28 px-4 sm:px-6 bg-soft-50">
         <div className="max-w-6xl mx-auto grid lg:grid-cols-2 gap-14 items-center">
           <div>
@@ -211,25 +210,53 @@ export default function Home() {
           </div>
 
           {formSubmitted ? (
-            <div className="bg-white border border-primary-200 rounded-2xl p-10 sm:p-12 text-center shadow-lg animate-[fadeIn_0.4s_ease-out]">
-              {/* Animated Check Circle */}
-              <div className="relative w-24 h-24 mx-auto mb-6">
-                <div className="absolute inset-0 bg-primary-100 rounded-full animate-ping opacity-40"></div>
-                <div className="relative w-24 h-24 bg-primary-600 rounded-full flex items-center justify-center shadow-lg shadow-primary-200">
-                  <svg className="w-12 h-12 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
-                  </svg>
-                </div>
+            <div className="bg-white border border-primary-100 rounded-2xl p-10 sm:p-14 text-center shadow-xl success-card">
+              {/* Realistic Check Animation */}
+              <div className="relative w-28 h-28 mx-auto mb-8">
+                <svg className="w-28 h-28" viewBox="0 0 100 100">
+                  {/* Background circle */}
+                  <circle
+                    cx="50"
+                    cy="50"
+                    r="46"
+                    fill="none"
+                    stroke="#e0f2fe"
+                    strokeWidth="6"
+                  />
+                  {/* Animated progress circle */}
+                  <circle
+                    className="success-circle"
+                    cx="50"
+                    cy="50"
+                    r="46"
+                    fill="none"
+                    stroke="#0284c7"
+                    strokeWidth="6"
+                    strokeLinecap="round"
+                    strokeDasharray="289"
+                    strokeDashoffset="289"
+                  />
+                  {/* Checkmark */}
+                  <path
+                    className="success-check"
+                    fill="none"
+                    stroke="#0284c7"
+                    strokeWidth="7"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M30 52 L44 66 L72 36"
+                  />
+                </svg>
               </div>
 
-              <h3 className="text-2xl sm:text-3xl font-bold text-soft-900 mb-3">
+              <h3 className="text-2xl sm:text-3xl font-bold text-soft-900 mb-3 success-title">
                 Appointment Request Sent!
               </h3>
-              <p className="text-gray-600 text-lg mb-6 max-w-md mx-auto">
+              <p className="text-gray-600 text-lg mb-7 max-w-md mx-auto success-text">
                 Thank you! We’ve received your booking request and will contact you shortly to confirm your preferred time.
               </p>
 
-              <div className="inline-flex items-center gap-2 text-sm text-primary-700 bg-primary-50 px-4 py-2 rounded-full">
+              <div className="inline-flex items-center gap-2 text-sm text-primary-700 bg-primary-50 px-5 py-2.5 rounded-full success-badge">
                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
                 </svg>
@@ -423,9 +450,69 @@ export default function Home() {
       </footer>
 
       <style jsx>{`
-        @keyframes fadeIn {
-          from { opacity: 0; transform: translateY(10px); }
-          to { opacity: 1; transform: translateY(0); }
+        .success-card {
+          animation: cardAppear 0.5s ease-out forwards;
+        }
+
+        .success-circle {
+          animation: drawCircle 0.7s ease-out 0.2s forwards;
+          transform-origin: center;
+          transform: rotate(-90deg);
+        }
+
+        .success-check {
+          stroke-dasharray: 80;
+          stroke-dashoffset: 80;
+          animation: drawCheck 0.45s ease-out 0.85s forwards;
+        }
+
+        .success-title {
+          opacity: 0;
+          animation: fadeUp 0.5s ease-out 1.1s forwards;
+        }
+
+        .success-text {
+          opacity: 0;
+          animation: fadeUp 0.5s ease-out 1.25s forwards;
+        }
+
+        .success-badge {
+          opacity: 0;
+          animation: fadeUp 0.5s ease-out 1.4s forwards;
+        }
+
+        @keyframes cardAppear {
+          from {
+            opacity: 0;
+            transform: scale(0.96) translateY(12px);
+          }
+          to {
+            opacity: 1;
+            transform: scale(1) translateY(0);
+          }
+        }
+
+        @keyframes drawCircle {
+          to {
+            stroke-dashoffset: 0;
+          }
+        }
+
+        @keyframes drawCheck {
+          to {
+            stroke-dashoffset: 0;
+          }
+        }
+
+        @keyframes fadeUp {
+          from {
+            opacity: 0;
+            transform: translateY(8px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
         }
       `}</style>
     </main>
